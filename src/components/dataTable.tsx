@@ -3,9 +3,9 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Items } from '../types/generic';
 
 const columns: GridColDef[] = [
-    { field: 'guid', headerName: 'GUID', width: 200 },
-    { field: 'name', headerName: 'Name', width: 200 },
-    { field: 'path', headerName: 'Path', flex: 1, 
+    { field: 'guid', headerName: 'GUID', flex: 1 },
+    { field: 'name', headerName: 'Name', flex: 1 },
+    { field: 'path', headerName: 'Path', flex: 2, 
         valueGetter: (_, row) => {
             return row.path.join('/');
         },

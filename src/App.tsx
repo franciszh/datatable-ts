@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGetItemsQuery } from './service/generic'
 import { DataTable } from './components/dataTable';
+import { TabComponent } from './components/tab'
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     return (
       <div className="App">
         <DataTable items={data} />
+        <TabComponent tabConfigs={[{label: "Properties", tabItem: null}, {label: "Image", tabItem: null}]}/>
       </div>
     )
   }
