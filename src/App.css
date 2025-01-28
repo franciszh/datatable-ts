@@ -8,3 +8,12 @@
   flex: 1;
 }
 
+.center-text {
+  text-align: center;
+  margin: 5%;
+}
+
+.full-width {
+  width: 100%;
+}
+

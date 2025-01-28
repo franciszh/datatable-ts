@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, fireEvent } from '@testing-library/react';
 import { DataTable } from './dataTable';
 import { Items } from '../types/generic';
 
@@ -48,4 +48,20 @@ describe('DataTable', () => {
         expect(secondRowCells[1]).toHaveTextContent('Another Item');
         expect(secondRowCells[2]).toHaveTextContent('root/documents');
     });
+    
+    it('calls onRowClick handler when row is clicked', async () => {
+        const mockOnRowClick = jest.fn();
+        
+        render(<DataTable items={mockItems} onRowClickHandler={mockOnRowClick} />);
+        
+        // Find and click the row (using the name cell as target)
+        const row = screen.getByRole('gridcell', { name: 'Test Item' });
+        fireEvent.click(row);
+        
+        // Verify the handler was called
+        expect(mockOnRowClick).toHaveBeenCalled();
+        // Verify the handler was called with correct row data
+        expect(mockOnRowClick.mock.calls[0][0].row).toEqual(mockItems[0]);
+    });
+
 });

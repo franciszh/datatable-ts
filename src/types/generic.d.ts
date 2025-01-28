@@ -1,4 +1,4 @@
-type ItemProperties = Record<string, string>
+export type ItemProperties = Record<string, string>
   
 interface Item {
     guid: string;

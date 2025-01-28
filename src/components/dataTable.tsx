@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridEventListener } from '@mui/x-data-grid';
 import { Items } from '../types/generic';
 
 const columns: GridColDef[] = [
@@ -14,9 +14,12 @@ const columns: GridColDef[] = [
 
 
 interface DataTableProps {
-    items: Items
+    items: Items,
+    onRowClickHandler?: GridEventListener<'rowClick'>,
 }
 
-export const DataTable: React.FC<DataTableProps> = ({ items }) => {
-    return <DataGrid getRowId={(row) => row.guid} rows={items} columns={columns} hideFooter />;
+export const DataTable: React.FC<DataTableProps> = ({ items, onRowClickHandler }) => {
+    return <DataGrid getRowId={(row) => row.guid} 
+            onRowClick={onRowClickHandler}
+            rows={items} columns={columns} hideFooter />;
 }
