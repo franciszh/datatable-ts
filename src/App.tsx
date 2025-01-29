@@ -7,6 +7,7 @@ import { selectGUID } from './store/selectors'
 import { update } from './store/itemSelectionSlice'
 import { ITEMS_API_HOST } from './constants/endpoints'
 import { ItemProperties } from './types/generic'
+import { GridColDef } from '@mui/x-data-grid'
 import './App.css';
 
 // Image panel content
@@ -33,6 +34,17 @@ const Properties = (props: {itemProperties?: ItemProperties}) => {
   return <div>Please select a row item on the data table</div>
 }
 
+// Data table col config
+const columns: GridColDef[] = [
+  { field: 'guid', headerName: 'GUID', flex: 1 },
+  { field: 'name', headerName: 'Name', flex: 1 },
+  { field: 'path', headerName: 'Path', flex: 2, 
+      valueGetter: (_, row) => {
+          return row.path.join('/');
+      },
+   },
+];
+
 
 const App = () => {
   const { data, error, isLoading } = useGetItemsQuery()
@@ -54,9 +66,9 @@ const App = () => {
     const propertiesPanel = <Properties itemProperties={propertiesOfSelectedItem}/>
     return (
       <div className="App">
-        <DataTable items={data} onRowClickHandler={(row) => {
-          // the type here needs a bit polish
-          dispatch(update((row.row as { guid: string }).guid))
+        <DataTable items={data} columns={columns}
+          onRowClickHandler={(row) => {
+          dispatch(update(row.row.guid))
         }}/>
         <TabComponent tabConfigs={[{label: "Properties", tabItem: propertiesPanel}, {label: "Image", tabItem: imagePanel}]}/>
       </div>
