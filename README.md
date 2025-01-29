@@ -29,5 +29,3 @@ Launches the test runner in the interactive watch mode.\
 
 ## Side Notes
 The Java endpoint is hardcoded on the endpoints.ts file in the constants directory, feel free to change it if the Java service is hosted on the ports other than 8080
-
-
