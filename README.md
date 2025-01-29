@@ -9,6 +9,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Make sure the node version is greater than 20.
+
+First of all, In the project directory install the dependencies by running:
+
+### `yarn`
+
 In the project directory, you can run:
 
 ### `yarn start`
